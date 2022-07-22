@@ -2,7 +2,7 @@
 pragma solidity ^0.8.1;
 
 // define the contract using contratc function
-// deployed smart contract address: 0x58839907F9C3ebf6F5BAB61d35328CC982b230cD
+// deployed smart contract address: 0x9854E4db5C3AfEeA9Daa9cfC8C3ff525Cd84Ed87
 contract MoodDiary {
     // string variable to store mood
     string public mood;
