@@ -1,5 +1,5 @@
 {
-  "name": "NFT-Tutorial",
+  "name": "nft-tutorial",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,11 +10,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^1.0.1",
-    "hardhat": "^2.10.1",
-    "install-peers": "^1.0.4"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.7.1"
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@openzeppelin/contracts": "^4.7.1",
+    "dotenv": "^16.0.1",
+    "hardhat": "^2.10.1"
   }
 }
