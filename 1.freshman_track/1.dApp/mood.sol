@@ -1,4 +1,4 @@
-// SPX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
 
 // define the contract using contratc function
@@ -12,7 +12,7 @@ contract MoodDiary {
         mood = _mood;
     }
 
-    // fucntion to detect the mood from the smart contract
+    // function to detect the mood from the smart contract
     // view only function that doe sinvoke blockchain changes
     // caller requires no gas fees to execute the fucntion to read data
     function getMood() public view returns(string memory) {
