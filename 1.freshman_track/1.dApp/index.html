@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
     <head>
         
         <meta charset="UTF-8">
@@ -25,9 +25,12 @@
               width: 100%;
               margin: 10px 0px 5px 0px;
             }
+
           </style>
     </head>
     <body>
+      
+
         <div>
             <!--Label, an input and buttons-->
             <h1>In-The-Mood dApp! 🤩</h1>
@@ -41,10 +44,95 @@
           <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript">
           </script>
           <script>
-            const MoodContractAddress = "<contract address>";
-            const MoodContractABI = <contract ABI>
+            // injected Web3 that detects if there is a wallet installed
+            // provider helps to use the wallet
+            // define ethers provider
+            window.ethereum.enable();
+            const provider= new ethers.providers.Web3Provider(
+              web3.currentProvider,
+              "ropsten"
+            );
+            const MoodContractAddress = "0x9854E4db5C3AfEeA9Daa9cfC8C3ff525Cd84Ed87";
+            const MoodContractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_mood",
+				"type": "string"
+			}
+		],
+		"name": "setMood",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMood",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "mood",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
             let MoodContract;
             let signer;
+      // way to request access to the user's wallet and connect the signer
+      // to the metamask account (use '[0]' as the default), and define 
+      // the contrac object using contract address, ABI and signer
+            provider.send("eth_requestAccounts", []).then(() => {
+            provider.listAccounts().then((accounts) => {
+            signer = provider.getSigner(accounts[0]);
+            MoodContract = new ethers.Contract(
+            MoodContractAddress,
+            MoodContractABI,
+            signer
+    );
+  });
+});
+
+  // asynchronous fucntions to call smart contract fucntions
+  // through MoodContract ABI instance
+
+  // getMood async function is a getter fucntion which assigns the store value
+  // to the const Mood variable
+  async function getMood() {
+  const getMoodPromise = MoodContract.getMood();
+  const Mood = await getMoodPromise;
+  console.log(Mood);
+  }
+
+  // setMood function is a setter function which has collect
+  // the input string through the getElementById method ("mood"
+  // and then store the value
+  async function setMood() {
+  const mood = document.getElementById("mood").value;
+  const setMoodPromise = MoodContract.setMood(mood);
+  await setMoodPromise
+  // the two functions need to be connected to the html buttons
+  // using an onlcik attribute which has the respective function calls
+  // as a value
+}
           </script>
     </body>
-</html> 
+</html>
