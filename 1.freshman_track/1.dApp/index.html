@@ -44,14 +44,7 @@
           <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript">
           </script>
           <script>
-            // injected Web3 that detects if there is a wallet installed
-            // provider helps to use the wallet
-            // define ethers provider
-            window.ethereum.enable();
-            const provider= new ethers.providers.Web3Provider(
-              web3.currentProvider,
-              "ropsten"
-            );
+           
             const MoodContractAddress = "0x9854E4db5C3AfEeA9Daa9cfC8C3ff525Cd84Ed87";
             const MoodContractABI = [
 	{
@@ -95,6 +88,13 @@
 	}
 ];
 
+  // injected Web3 that detects if there is a wallet installed
+            // provider helps to use the wallet
+            // define ethers provider
+    const provider= new ethers.providers.Web3Provider(
+              window.ethereum,
+              "ropsten"
+            );
             let MoodContract;
             let signer;
       // way to request access to the user's wallet and connect the signer
