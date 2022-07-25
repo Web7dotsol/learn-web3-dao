@@ -1,4 +1,4 @@
-// SPX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
 // Mappings in solidity act like hasmhmaps or dictionaries in other programming

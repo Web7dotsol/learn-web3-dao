@@ -1,5 +1,4 @@
-// SPX-License-Identifier: MIT
-pragma solidity ^0.8.10;
+// SPDX-License-Identifier: MITpragma solidity ^0.8.10;
 
 // we can also create nested mappings, where the 'key' points to a second nested mapping
 // To do this, we set the 'valueType' to a mapping itself
