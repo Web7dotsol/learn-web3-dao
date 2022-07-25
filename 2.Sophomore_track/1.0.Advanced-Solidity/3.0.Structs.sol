@@ -1,21 +1,44 @@
 // SPX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-// define the contract using contratc function
-contract MoodDiary {
-    // string variable to store mood
-    string public mood;
+// The concepts of structs exists in many hihg level programming
+// languages. They are used to define your own data types
+// which group together related data.
 
-    // function to set the mood use _mood as a parameter to avoid 
-    // variable overshadowing
-    function setMood(string memory _mood) public {
-        mood = _mood;
+// define the contract using contratc function
+contract TodoList {
+    //Declare a struct which groups together two data types
+    struct TodoItem {
+        string text;
+        bool completed;
     }
 
-    // fucntion to detect the mood from the smart contract
-    // view only function that doe sinvoke blockchain changes
-    // caller requires no gas fees to execute the fucntion to read data
-    function getMood() public view returns(string memory) {
-        return mood;
+    //Create an array of TodoItems structs
+    TodoItem[] public todos;
+
+    function createTodo(string memory _text) public {
+        // There are multiple ways to initialize structs
+
+        // Method 1 - Call it like a function
+        todos.push(TodoItem(_text, false));
+
+        // Method 2 - Explicitly set its keys
+        todos.push(TodoItem({text: _text, completed: false}));
+
+        // Method 3 - Initialize an empty struct, then set individual properties
+        TodoItem memory todo;
+        todo.text = _text;
+        todo.completed = false;
+        todos.push(todo);
+    }
+  
+    // Update a struct value
+    function update(uint _index, string memory _text) public {
+         todos[_index].text = _text;
+    }
+
+    // Update completed
+    function toggleCompleted(uint _index) public {
+        todos[_index].completed = !todos[_index].completed;
     }
 }
