@@ -22,7 +22,7 @@ contract ViewAndPure {
     //Promise not to modify or read from state
     // pure as in can be used in any contract without having to refer
     // to any state variable in order to perfrom its getter operation
-    fucntion add(uint i, uint j) public pure returns (uint) {
+    function add(uint i, uint j) public pure returns (uint) {
         return i + j;
     }
 }
