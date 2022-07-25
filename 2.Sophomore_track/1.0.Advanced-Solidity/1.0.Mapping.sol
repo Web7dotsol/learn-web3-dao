@@ -26,4 +26,4 @@ contract Mapping {
         // Reset value to the default value;
         delete myMapp[_addr];
     }
-    }
+}

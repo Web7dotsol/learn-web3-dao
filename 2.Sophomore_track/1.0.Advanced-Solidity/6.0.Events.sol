@@ -1,21 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
+// Events allow contracts to perform logging on the ethereum blockchain
+// Logs for a given contract can be parsed later to perform updates on 
+// on the frontend interface, for example. They are commonly used to
+// allow frontend interfaes to liste for specific events and update
+// the user itnerface, or used as a cheap
+// form of storage.
 
 // define the contract using contratc function
-contract MoodDiary {
-    // string variable to store mood
-    string public mood;
+contract Events {
+    // Declare an event which logs an address and a string
+    event TestCalled(address sender, string message);
 
-    // function to set the mood use _mood as a parameter to avoid 
-    // variable overshadowing
-    function setMood(string memory _mood) public {
-        mood = _mood;
-    }
-
-    // fucntion to detect the mood from the smart contract
-    // view only function that doe sinvoke blockchain changes
-    // caller requires no gas fees to execute the fucntion to read data
-    function getMood() public view returns(string memory) {
-        return mood;
+    function test() public {
+        // Log an event
+        emit TestCalled(msg.sender, "Someone called test()!");
     }
 }
