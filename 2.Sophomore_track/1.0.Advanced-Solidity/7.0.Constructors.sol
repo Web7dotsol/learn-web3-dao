@@ -1,21 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
+// A 'constructor' is an optional function that is executed when the
+// contract is first deployed. You can also pass arguments to
+// constructors
 
 // define the contract using contratc function
-contract MoodDiary {
-    // string variable to store mood
-    string public mood;
+contract TheContructor {
+    string public name;
 
-    // function to set the mood use _mood as a parameter to avoid 
-    // variable overshadowing
-    function setMood(string memory _mood) public {
-        mood = _mood;
-    }
-
-    // fucntion to detect the mood from the smart contract
-    // view only function that doe sinvoke blockchain changes
-    // caller requires no gas fees to execute the fucntion to read data
-    function getMood() public view returns(string memory) {
-        return mood;
+    // You will need to provide a string argument when deploying the contract
+    constuctor(string memory _name) {
+        // This will be set immediately when the contract is deployed
+        name = _name;
     }
 }
