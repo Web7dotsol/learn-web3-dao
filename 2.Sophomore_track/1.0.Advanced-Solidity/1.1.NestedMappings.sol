@@ -1,21 +1,31 @@
 // SPX-License-Identifier: MIT
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.10;
+
+// we can also create nested mappings, where the 'key' points to a second nested mapping
+// To do this, we set the 'valueType' to a mapping itself
 
 // define the contract using contratc function
-contract MoodDiary {
+contract NestedMappings {
     // string variable to store mood
-    string public mood;
+   mapping(address => mapping(uint => bool)) public nestedMapp;
 
-    // function to set the mood use _mood as a parameter to avoid 
-    // variable overshadowing
-    function setMood(string memory _mood) public {
-        mood = _mood;
+   function get(address _addr1, uint i) public view returns (bool) {
+    // You can get values from a nested mapping
+    // even when it is not initialized
+    // The default value for bool type is false
+    // Read operation
+    return nestedMapp[_addr1][_i];
     }
 
-    // fucntion to detect the mood from the smart contract
-    // view only function that doe sinvoke blockchain changes
-    // caller requires no gas fees to execute the fucntion to read data
-    function getMood() public view returns(string memory) {
-        return mood;
+    function set(
+        address _addr1,
+        uint _i,
+        bool _boo
+    ) public {
+        nestedMapp[_addr1][_uint _i] = _boo;
+    }
+
+    function remove(address _addr1, uint _i) public {
+        delete nestedMapp[_addr1][_i];
     }
 }
