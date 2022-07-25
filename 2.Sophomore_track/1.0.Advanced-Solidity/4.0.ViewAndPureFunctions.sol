@@ -1,21 +1,28 @@
 // SPX-License-Identifier: MIT
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.10;
+
+// 'view' and 'pure' are special keywords which indicate specific behaviour
+// for the function
+
+// Getter functions (those which return values) can be declared either 'view or 'pure'
+// - 'view': fucntions which do not change any state variables
+// - 'Pure'" Fucntions which do not change any state values, but do also
+// do not read any state values
 
 // define the contract using contratc function
-contract MoodDiary {
-    // string variable to store mood
-    string public mood;
+contract ViewAndPure {
+    // Declare a state variable
+    uint public x = 1;
 
-    // function to set the mood use _mood as a parameter to avoid 
-    // variable overshadowing
-    function setMood(string memory _mood) public {
-        mood = _mood;
+    //Promise not to modify the state (but can read state)
+    function addToX(uint y) public view returns (uint) {
+        return x + y;
     }
 
-    // fucntion to detect the mood from the smart contract
-    // view only function that doe sinvoke blockchain changes
-    // caller requires no gas fees to execute the fucntion to read data
-    function getMood() public view returns(string memory) {
-        return mood;
+    //Promise not to modify or read from state
+    // pure as in can be used in any contract without having to refer
+    // to any state variable in order to perfrom its getter operation
+    fucntion add(uint i, uint j) public pure returns (uint) {
+        return i + j;
     }
 }
